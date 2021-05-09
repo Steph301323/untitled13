@@ -1,8 +1,11 @@
 import java.io.File;
 import java.io.IOException;
 import java.lang.StringBuilder;
+import java.io.FileWriter;
 
 class Main {
+
+    private static Object File;
 
     public static void main(String[] args) {
 
@@ -83,9 +86,17 @@ class Main {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-
-
-
+        StringBuilder sb = new StringBuilder();
+        sb.append(File);
+        String text = sb.toString();
+        try (FileWriter writer = new FileWriter("temp.txt", false)) {
+            writer.write(text);
+            writer.append('\n');
+            writer.append('!');
+            writer.flush();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
 
     }
 }
